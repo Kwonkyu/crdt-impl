@@ -16,8 +16,8 @@ class WebSocketConfig {
             counterPropagateHandler: CounterPropagateHandler
      ): HandlerMapping {
          val mappings = mapOf(
-             "/ws/counter/join" to counterLobbyHandler, // WebSocket endpoint
-             "/ws/counter/propagate" to counterPropagateHandler // WebSocket endpoint
+             "/ws/counter/join" to counterLobbyHandler,
+             "/ws/counter/propagate" to counterPropagateHandler
          )
          return SimpleUrlHandlerMapping(mappings, -1)
      }

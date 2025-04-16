@@ -26,11 +26,6 @@ class LocalCounter(
     val uid: String,
 ) {
 
-    /** 현재 인스턴스가 파라미터로 받은 인스턴스보다 monotone 하게 최신인지? */
-    fun compare(other: LocalCounter): Boolean {
-        return values.indices.all { values[it] >= other.values[it] }
-    }
-
     /** 현재 인스턴스의 카운터를 다른 카운터와 병합한다. Grow-Only 카운터기 때문에 maxOf로 monotone 유지 가능. */
     fun merge(other: LocalCounter): LocalCounter {
         val merged = IntArray(values.size)
@@ -40,5 +35,9 @@ class LocalCounter(
             }
         }
         return LocalCounter(merged, uid)
+    }
+
+    override fun toString(): String {
+        return "LocalCounter(values=${values.contentToString()}, uid='$uid')"
     }
 }
